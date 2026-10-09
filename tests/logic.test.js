@@ -16,4 +16,5 @@ test('Проверка данных отсекает пустые названи
  const valid={title:'  Защита  ',description:'  Описание ',importance:3,due_date:'2026-10-10'};
  assert.equal(validateTask(valid).title,'Защита');
  for(const patch of [{title:''},{importance:'3'},{importance:6},{due_date:'2026-02-30'},{due_date:'2026-13-01'},{title:'x'.repeat(121)}]) assert.throws(()=>validateTask({...valid,...patch}),InputError);
+ for(const body of [null,[],42,'task']) assert.throws(()=>validateTask(body),InputError);
 });

@@ -1,5 +1,6 @@
 export class InputError extends Error {}
 export function validateTask(body) {
+  if(!body || typeof body !== 'object' || Array.isArray(body)) throw new InputError('Передайте объект с данными задачи');
   const title=typeof body.title==='string'?body.title.trim():'';
   const description=typeof body.description==='string'?body.description.trim():'';
   const importance=body.importance;
