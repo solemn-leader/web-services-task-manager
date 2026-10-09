@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>План задач</title><link rel="stylesheet" href="style.css"><script src="app.js" defer></script></head>
+<body>
+<header><a class="brand" href="/">План задач<span>Учебный веб-сервис</span></a><span class="tag">Docker Compose · вариант 16</span></header>
+<main>
+<section class="intro"><p class="eyebrow">ЗАДАЧИ И СРОКИ</p><h1>Сначала — главное.</h1><p>Собери задачи в одном месте. Отдельный сервис рассчитает приоритет по важности и сроку.</p></section>
+<section class="stats" aria-label="Сводка задач"><div><span id="total">—</span>Всего задач</div><div><span id="active">—</span>В работе и в планах</div><div><span id="done">—</span>Завершено</div></section>
+<div class="layout"><section class="panel"><h2>Новая задача</h2><form id="task-form">
+<label>Название<input name="title" required maxlength="120" placeholder="Например, подготовить защиту"></label>
+<label>Описание<textarea name="description" maxlength="2000" rows="3" placeholder="Что нужно сделать?"></textarea></label>
+<div class="form-row"><label>Срок<input type="date" name="due_date" min="2000-01-01" max="2100-12-31" required></label><label>Важность<select name="importance"><option value="1">1 — низкая</option><option value="2">2</option><option value="3" selected>3 — средняя</option><option value="4">4</option><option value="5">5 — высокая</option></select></label></div>
+<button class="primary" type="submit">Добавить задачу</button></form>
+<p class="hint">Задача сохраняется в PostgreSQL. Данные остаются после перезапуска контейнеров.</p></section>
+<section class="panel list-panel"><div class="list-header"><div><h2>Мои задачи</h2><p id="mode">Записи из базы данных</p></div><div class="actions"><button id="load">Загрузить из БД</button><button id="prioritize" class="accent">Рассчитать приоритет</button></div></div>
+<div id="notice" role="status" aria-live="polite"></div><div id="tasks" class="tasks"><p class="empty">Нажми «Загрузить из БД», чтобы увидеть задачи.</p></div></section></div>
+<footer>Интерфейс → REST API → PostgreSQL / сервис приоритезации</footer>
+</main><dialog id="delete-dialog"><h2>Удалить задачу?</h2><p>Задача будет удалена из списка и базы данных.</p><div class="actions"><button id="cancel-delete">Оставить</button><button id="confirm-delete" class="danger">Удалить</button></div></dialog>
+</body></html>
